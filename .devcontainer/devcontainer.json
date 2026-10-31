@@ -1,0 +1,5 @@
+{
+  "name": "tiedout",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  "postCreateCommand": "npm ci && npm install --global @anthropic-ai/claude-code@2.1.314"
+}

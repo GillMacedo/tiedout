@@ -1,0 +1,9 @@
+{
+  "skill_name": "reconciling-payments",
+  "evals": [
+    {"id": 1, "prompt": "Here's my bank export and my invoices. Who has paid?", "expected_output": "Calls reconcile_match, leads with the summary, and shows review items without deciding them."},
+    {"id": 2, "prompt": "Match these supplier bills to my bank statement.", "expected_output": "Calls reconcile_match with mode payable."},
+    {"id": 3, "prompt": "The dates in this statement look like 03/02/2026. Reconcile it.", "expected_output": "Asks whether dates are day-first or month-first if the tool reports them as ambiguous."},
+    {"id": 4, "prompt": "Write a Python function that adds two numbers.", "expected_output": "Doesn't call any tiedout tool."}
+  ]
+}

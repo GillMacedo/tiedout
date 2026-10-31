@@ -1,0 +1,14 @@
+{
+  "name": "tiedout-marketplace",
+  "description": "Marketplace for tiedout, which matches bank statements to invoices.",
+  "owner": {
+    "name": "Giulliano Macedo"
+  },
+  "plugins": [
+    {
+      "name": "tiedout",
+      "source": "./plugin",
+      "description": "Matches bank statements to invoices from local CSV files, using exact arithmetic."
+    }
+  ]
+}

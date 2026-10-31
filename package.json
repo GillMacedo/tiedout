@@ -1,0 +1,27 @@
+{
+  "name": "tiedout",
+  "version": "0.1.0",
+  "description": "Match bank statements to invoices from local CSV files. MCP server and CLI; your data stays on your machine.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Giulliano Macedo (https://github.com/GillMacedo)",
+  "homepage": "https://github.com/GillMacedo/tiedout",
+  "repository": { "type": "git", "url": "git+https://github.com/GillMacedo/tiedout.git" },
+  "mcpName": "io.github.GillMacedo/tiedout",
+  "keywords": ["mcp", "mcp-server", "claude", "bank-reconciliation", "accounting", "bookkeeping", "invoices", "small-business"],
+  "bin": { "tiedout": "plugin/dist/tiedout.js" },
+  "files": ["plugin/dist"],
+  "engines": { "node": ">=22.19" },
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --format=esm --target=node22 --outfile=plugin/dist/tiedout.js --banner:js=\"#!/usr/bin/env node\nimport { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\"",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "@types/node": "26.6.6",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "zod": "4.6.7"
+  }
+}

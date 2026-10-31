@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tiedout": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/dist/tiedout.js", "serve"]
+    }
+  }
+}

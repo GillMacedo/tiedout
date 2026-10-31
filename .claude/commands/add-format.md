@@ -1,0 +1,1 @@
+Support the export format $ARGUMENTS: add a made-up sample with the same column headers to `tests/load.test.ts`, add any new column names to `NAMES` in `src/load.ts`, and run `make test`. Never add real financial data.
