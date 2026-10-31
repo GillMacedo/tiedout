@@ -1,6 +1,6 @@
 {
   "name": "tiedout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Match bank statements to invoices from local CSV files. MCP server and CLI; your data stays on your machine.",
   "type": "module",
   "license": "MIT",

@@ -22,14 +22,14 @@ As a Claude Code plugin, which adds the MCP server and a skill that tells Claude
     claude plugin marketplace add GillMacedo/tiedout
     claude plugin install tiedout@tiedout-marketplace
 
-For other MCP clients, run it from GitHub. You need Node 22.19 or newer:
+For other MCP clients, run it from npm. You need Node 22.19 or newer:
 
 ```json
 {
   "mcpServers": {
     "tiedout": {
       "command": "npx",
-      "args": ["-y", "github:GillMacedo/tiedout", "serve"]
+      "args": ["-y", "tiedout", "serve"]
     }
   }
 }

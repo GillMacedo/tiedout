@@ -1,6 +1,6 @@
 {
   "name": "tiedout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Matches bank statements to invoices from local CSV files, using exact arithmetic.",
   "author": {
     "name": "Giulliano Macedo",
