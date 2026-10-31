@@ -1,7 +1,6 @@
 # Roadmap
 
 ## Next
-- Publish to npm and the official MCP Registry
 - More column names, and tests against more bank export formats
 - `--out` for spreadsheet results
 

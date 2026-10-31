@@ -1,10 +1,19 @@
-# tiedout
+# tiedout: bank reconciliation for CSV files
 
-**Match your bank statement to your invoices, with exact math and without uploading your books anywhere.**
+[![npm](https://img.shields.io/npm/v/tiedout)](https://www.npmjs.com/package/tiedout) [![CI](https://github.com/GillMacedo/tiedout/actions/workflows/ci.yml/badge.svg)](https://github.com/GillMacedo/tiedout/actions/workflows/ci.yml) [![MIT license](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-green)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.GillMacedo/tiedout)
+
+**Match your bank statement to your invoices or bills, with exact math and without uploading your books anywhere. For small businesses, freelancers and bookkeepers.**
 
 Reconciling payments by hand is slow, and asking an AI model to compare long CSV files invites arithmetic mistakes. `tiedout` does the matching in code and sorts every line into matched, likely, review or unmatched, with the reason. A person or an agent only has to look at the exceptions. It's an MCP server and a CLI with no account, no API key and no network access.
 
 It works with any bank or invoicing tool that exports CSV. It reads title lines, footers, separate credit and debit columns, semicolons, decimal commas, day-first dates and several languages' column names.
+
+## What you can ask your agent
+
+- "Here's my bank export and my invoices. Who has paid?"
+- "Which customers still owe me money?"
+- "Match these supplier bills to my bank statement."
+- "Are there any duplicate payments, or payments with no invoice?"
 
 ## Install
 
@@ -13,14 +22,14 @@ As a Claude Code plugin, which adds the MCP server and a skill that tells Claude
     claude plugin marketplace add GillMacedo/tiedout
     claude plugin install tiedout@tiedout-marketplace
 
-For other MCP clients, run it from GitHub. You need Node 22.19 or newer:
+For other MCP clients, run it from npm. You need Node 22.19 or newer:
 
 ```json
 {
   "mcpServers": {
     "tiedout": {
       "command": "npx",
-      "args": ["-y", "github:GillMacedo/tiedout", "serve"]
+      "args": ["-y", "tiedout", "serve"]
     }
   }
 }
@@ -76,6 +85,16 @@ Both are read-only. `reconcile_match` returns names and amounts from your files 
 - It assumes two decimal places and doesn't convert currencies. Lines in different currencies never match.
 - It treats each file as the full list of open items. It doesn't track partial payments across runs.
 - So far it has been tested on made-up data in common export formats, not on every bank's real exports. If yours fails, please open an issue with the column headers, not your data.
+
+## FAQ
+
+**How do I reconcile a bank statement with invoices automatically?** Export both as CSV and run `npx tiedout match bank.csv invoices.csv`. Matches come out with the reason, and anything uncertain goes to review.
+
+**Is my financial data uploaded?** The tool has no network code. The CLI keeps everything on your machine. Through MCP, results go to whichever AI model your client uses.
+
+**Does it work with QuickBooks, Xero or my bank?** It reads CSV exports rather than connecting to them. Most accounting tools and banks can export CSV. It hasn't been tested on each one's real exports yet.
+
+**Can it match accounts payable?** Yes. Use `--payable` to match money out to bills.
 
 ## Contributing
 

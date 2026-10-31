@@ -1,6 +1,6 @@
 {
   "name": "tiedout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Match bank statements to invoices from local CSV files. MCP server and CLI; your data stays on your machine.",
   "type": "module",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "homepage": "https://github.com/GillMacedo/tiedout",
   "repository": { "type": "git", "url": "git+https://github.com/GillMacedo/tiedout.git" },
   "mcpName": "io.github.GillMacedo/tiedout",
-  "keywords": ["mcp", "mcp-server", "claude", "bank-reconciliation", "accounting", "bookkeeping", "invoices", "small-business"],
+  "keywords": ["mcp", "mcp-server", "claude", "bank-reconciliation", "accounting", "bookkeeping", "invoices", "small-business", "accounts-receivable", "accounts-payable", "csv", "freelancer"],
   "bin": { "tiedout": "plugin/dist/tiedout.js" },
   "files": ["plugin/dist"],
   "engines": { "node": ">=22.19" },
