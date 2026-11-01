@@ -26,4 +26,4 @@ Matches bank statement CSVs to invoice CSVs. It's an MCP server, a CLI and a Cla
 - Never write to stdout in server code, because it corrupts JSON-RPC.
 
 ## Definition of done
-Tests pass, the bundle is rebuilt, the README example matches, and `CHANGELOG.md` and `ROADMAP.md` are updated if relevant. Only the maintainer merges to `main`.
+Tests pass, the bundle is rebuilt, the README example matches, and `ROADMAP.md` is updated if relevant. Only the maintainer merges to `main`.
