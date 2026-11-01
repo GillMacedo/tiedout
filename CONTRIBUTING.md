@@ -15,6 +15,7 @@ You need Node 22.19 or newer. `make lint` also needs Claude Code. The dev contai
 - Keep each one to a single change, with tests.
 - Commit the rebuilt `plugin/dist/tiedout.js`. CI checks that it matches the source.
 - Update `CHANGELOG.md`, `ROADMAP.md` and docs when relevant.
+- Releases are automatic: a merge that changes what users install becomes a new version once its `CHANGELOG.md` lines are in. Docs and CI changes wait for the next one.
 
 ## Working with AI agents
 Agents are welcome. `CLAUDE.md` and `AGENTS.md` have the project's instructions, and `.claude/commands/` has common tasks. Say in your PR that an agent helped, and review the result yourself before submitting. You're responsible for what you submit.
