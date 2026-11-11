@@ -31,15 +31,15 @@ export interface Loaded<T> {
 }
 
 const NAMES: Record<Field, string[]> = {
-  date: ["date", "transaction date", "posted", "posted date", "posting date", "booking date", "value date", "invoice date", "issue date", "issued", "data", "fecha", "datum", "data lancamento", "data emissao"],
-  amount: ["amount", "transaction amount", "value", "total", "invoice total", "amount due", "balance due", "open amount", "valor", "valor total", "importe", "betrag"],
-  credit: ["credit", "credits", "paid in", "money in", "deposit", "deposits", "credito", "entrada"],
-  debit: ["debit", "debits", "paid out", "money out", "withdrawal", "withdrawals", "debito", "saida"],
-  description: ["description", "details", "memo", "narrative", "payee", "transaction", "reference", "descricao", "historico", "concepto", "verwendungszweck"],
-  currency: ["currency", "ccy", "moeda", "moneda", "wahrung"],
-  number: ["invoice", "invoice number", "invoice no", "invoice id", "invoice #", "number", "inv", "bill", "bill number", "doc number", "fatura", "nota", "numero", "factura", "rechnung"],
-  party: ["customer", "customer name", "client", "client name", "vendor", "vendor name", "supplier", "supplier name", "name", "bill to", "cliente", "fornecedor", "kunde"],
-  due: ["due", "due date", "vencimento", "data vencimento", "vencimiento", "fallig"],
+  date: ["date", "transaction date", "posted", "posted date", "posting date", "booking date", "value date", "invoice date", "issue date", "issued", "data", "fecha", "datum", "data lancamento", "data emissao", "date operation", "data transakcji", "buchungsdatum"],
+  amount: ["amount", "transaction amount", "value", "total", "invoice total", "amount due", "balance due", "open amount", "valor", "valor total", "importe", "betrag", "bedrag", "montant", "importo", "kwota"],
+  credit: ["credit", "credits", "paid in", "money in", "deposit", "deposits", "credito", "entrada", "avere"],
+  debit: ["debit", "debits", "paid out", "money out", "withdrawal", "withdrawals", "debito", "saida", "dare"],
+  description: ["description", "details", "memo", "narrative", "payee", "transaction", "reference", "descricao", "historico", "concepto", "verwendungszweck", "libelle", "descrizione", "causale", "opis", "omschrijving", "buchungstext"],
+  currency: ["currency", "ccy", "moeda", "moneda", "wahrung", "devise", "waluta"],
+  number: ["invoice", "invoice number", "invoice no", "invoice id", "invoice #", "number", "inv", "bill", "bill number", "doc number", "fatura", "nota", "numero", "factura", "rechnung", "num", "numero de facture"],
+  party: ["customer", "customer name", "client", "client name", "vendor", "vendor name", "supplier", "supplier name", "name", "bill to", "cliente", "fornecedor", "kunde", "contact name"],
+  due: ["due", "due date", "vencimento", "data vencimento", "vencimiento", "fallig", "echeance"],
 };
 
 const normalize = (header: string) =>

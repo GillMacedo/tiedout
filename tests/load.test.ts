@@ -60,3 +60,66 @@ test("invoices load, and bad rows are reported rather than dropped silently", ()
   assert.equal(invoices.items[0].due, "2026-03-01");
   assert.deepEqual(invoices.skipped.map((s) => s.row), [3, 4]);
 });
+
+test("french bank headers: date, libelle and montant", () => {
+  const bank = loadBank(file("fr.csv", "Date;Libellé;Montant\n25/02/2026;LOYER BUREAU;-850,00\n02/03/2026;SALAIRE;2.100,00\n"));
+  assert.deepEqual(bank.items.map((line) => [line.date, line.amount]), [["2026-02-25", -85000], ["2026-03-02", 210000]]);
+  assert.equal(bank.columns.description, "Libellé");
+  assert.equal(bank.columns.amount, "Montant");
+});
+
+test("italian bank headers: data, descrizione and importo", () => {
+  const bank = loadBank(file("it.csv", "Data;Descrizione;Importo\n25/02/2026;Stipendio;1.500,00\n02/03/2026;Affitto;-650,00\n"));
+  assert.deepEqual(bank.items.map((line) => [line.date, line.amount]), [["2026-02-25", 150000], ["2026-03-02", -65000]]);
+  assert.equal(bank.columns.description, "Descrizione");
+});
+
+test("italian dare and avere columns act as debit and credit", () => {
+  const bank = loadBank(file("it2.csv", "Data,Descrizione,Dare,Avere\n2026-03-02,Stipendio,,1500.00\n2026-03-03,Affitto,650.00,\n"));
+  assert.deepEqual(bank.items.map((line) => line.amount), [150000, -65000]);
+});
+
+test("polish bank headers: data transakcji, opis and kwota", () => {
+  const bank = loadBank(file("pl.csv", "Data transakcji;Opis;Kwota\n25/02/2026;WYPLATA;3.500,00\n02/03/2026;CZYNSZ;-1.800,00\n"));
+  assert.deepEqual(bank.items.map((line) => [line.date, line.amount]), [["2026-02-25", 350000], ["2026-03-02", -180000]]);
+  assert.equal(bank.columns.description, "Opis");
+});
+
+test("german DATEV headers: buchungsdatum, buchungstext and betrag", () => {
+  const bank = loadBank(file("de.csv", "Buchungsdatum;Buchungstext;Betrag\n25/02/2026;Gehalt;2.750,00\n02/03/2026;Miete;-950,00\n"));
+  assert.deepEqual(bank.items.map((line) => [line.date, line.amount]), [["2026-02-25", 275000], ["2026-03-02", -95000]]);
+  assert.equal(bank.columns.description, "Buchungstext");
+});
+
+test("dutch bank headers: datum, omschrijving and bedrag", () => {
+  const bank = loadBank(file("nl.csv", "Datum;Omschrijving;Bedrag\n25/02/2026;Salaris;2.300,00\n02/03/2026;Huur;-1.050,00\n"));
+  assert.deepEqual(bank.items.map((line) => [line.date, line.amount]), [["2026-02-25", 230000], ["2026-03-02", -105000]]);
+  assert.equal(bank.columns.description, "Omschrijving");
+});
+
+test("quickbooks invoice headers: num and name", () => {
+  const invoices = loadInvoices(file("qb.csv", "Num,Name,Date,Due Date,Total\n1001,Acme BV,2026-02-01,2026-03-01,250\n1002,Globex,2026-02-05,2026-03-05,99.5\n"));
+  assert.equal(invoices.items.length, 2);
+  assert.equal(invoices.items[0].number, "1001");
+  assert.equal(invoices.items[0].party, "Acme BV");
+  assert.equal(invoices.items[0].amount, 25000);
+  assert.equal(invoices.items[0].due, "2026-03-01");
+  assert.equal(invoices.columns.number, "Num");
+});
+
+test("xero invoice headers: contact name as the party", () => {
+  const invoices = loadInvoices(file("xero.csv", "Invoice Number,Contact Name,Date,Due Date,Total\nINV-0092,Wayne Enterprises,2026-02-01,2026-03-01,480\n"));
+  assert.equal(invoices.items.length, 1);
+  assert.equal(invoices.items[0].number, "INV-0092");
+  assert.equal(invoices.items[0].party, "Wayne Enterprises");
+  assert.equal(invoices.columns.party, "Contact Name");
+});
+
+test("french invoice headers: numero de facture and echeance", () => {
+  const invoices = loadInvoices(file("frinv.csv", "Numéro de facture,Client,Date,Échéance,Total\nF-2026-01,Atelier Bleu,2026-02-01,2026-03-01,120\n"));
+  assert.equal(invoices.items.length, 1);
+  assert.equal(invoices.items[0].number, "F-2026-01");
+  assert.equal(invoices.items[0].party, "Atelier Bleu");
+  assert.equal(invoices.items[0].due, "2026-03-01");
+  assert.equal(invoices.columns.due, "Échéance");
+});
